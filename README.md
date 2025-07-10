@@ -1,6 +1,6 @@
 
 ```markdown
-# NetPulse
+NetPulse
 
 **NetPulse** is a real-time **Network Monitoring Dashboard** designed to simulate the operations of a Network Operations Center (NOC) for telecoms, ISPs, and infrastructure engineers. Built with scalability, observability, and real-time feedback in mind, NetPulse helps teams monitor server health, generate alerts, and visualize key network metrics.
 
