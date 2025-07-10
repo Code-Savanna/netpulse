@@ -4,11 +4,11 @@ First off, thank you for considering contributing to NetPulse! It's people like 
 
 ## Where do I go from here?
 
-If you've noticed a bug or have a feature request, [make one](https://github.com/dabwitso/netpulse/issues/new)! It's generally best if you get confirmation of your bug or approval for your feature request this way before starting to code.
+If you've noticed a bug or have a feature request, [make one](https://github.com/Code Savanna/netpulse/issues/new)! It's generally best if you get confirmation of your bug or approval for your feature request this way before starting to code.
 
 ### Fork & create a branch
 
-If this is something you think you can fix, then [fork NetPulse](https://github.com/dabwitso/netpulse/fork) and create a branch with a descriptive name.
+If this is something you think you can fix, then [fork NetPulse](https://github.com/Code Savanna/netpulse/fork) and create a branch with a descriptive name.
 
 A good branch name would be (where issue #325 is the ticket you're working on):
 

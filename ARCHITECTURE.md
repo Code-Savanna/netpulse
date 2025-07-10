@@ -14,7 +14,7 @@
 
 ---
 
-## 📋 Table of Contents
+## Table of Contents
 
 - [Overview](#-overview)
 - [System Architecture](#-system-architecture)
@@ -29,22 +29,22 @@
 
 ---
 
-## 🏗️ Overview
+## Overview
 
 NetPulse follows a **microservices architecture** with clear separation of concerns, designed for high availability, scalability, and maintainability. The system consists of multiple loosely coupled services that communicate through well-defined APIs and message queues.
 
 ### **Architectural Principles**
 
-- **🔄 Microservices**: Loosely coupled, independently deployable services
-- **📡 Event-Driven**: Asynchronous communication using message queues
-- **🎯 Domain-Driven Design**: Services organized around business capabilities
-- **🛡️ Security-First**: Zero-trust security model with comprehensive authentication
-- **📊 Observable**: Comprehensive logging, metrics, and tracing
-- **🚀 Cloud-Native**: Container-first design for cloud deployment
+- **Microservices**: Loosely coupled, independently deployable services
+- **Event-Driven**: Asynchronous communication using message queues
+- **Domain-Driven Design**: Services organized around business capabilities
+- **Security-First**: Zero-trust security model with comprehensive authentication
+- **Observable**: Comprehensive logging, metrics, and tracing
+- **Cloud-Native**: Container-first design for cloud deployment
 
 ---
 
-## 🎯 System Architecture
+## System Architecture
 
 ```mermaid
 graph TB
@@ -139,7 +139,7 @@ graph TB
 
 ---
 
-## 🧩 Component Architecture
+## Component Architecture
 
 ### **Frontend Architecture**
 
@@ -248,7 +248,7 @@ graph TB
 
 ---
 
-## 🔄 Data Flow
+## Data Flow
 
 ### **Real-time Monitoring Flow**
 
@@ -312,7 +312,7 @@ flowchart TD
 
 ---
 
-## 🗄️ Database Design
+## Database Design
 
 ### **PostgreSQL Schema**
 
@@ -410,7 +410,7 @@ celery-task-meta-{task_id}: {task_result}
 
 ---
 
-## 🛡️ Security Architecture
+## Security Architecture
 
 ### **Authentication & Authorization**
 
@@ -468,7 +468,7 @@ graph TB
 
 ---
 
-## 🚀 Deployment Architecture
+## Deployment Architecture
 
 ### **Container Architecture**
 
@@ -618,7 +618,7 @@ volumes:
 
 ---
 
-## 📈 Scalability Considerations
+## Scalability Considerations
 
 ### **Horizontal Scaling Strategy**
 
@@ -642,7 +642,7 @@ volumes:
 
 ---
 
-## 📊 Monitoring & Observability
+## Monitoring & Observability
 
 ### **Metrics Collection**
 
@@ -703,7 +703,7 @@ volumes:
 
 ---
 
-## 🔄 Data Backup & Recovery
+## Data Backup & Recovery
 
 ### **Backup Strategy**
 
@@ -747,7 +747,7 @@ DR Procedures:
 
 ---
 
-## 📚 Integration Architecture
+## Integration Architecture
 
 ### **External Service Integration**
 
@@ -792,7 +792,7 @@ graph LR
 
 ---
 
-## 🔮 Future Architecture Considerations
+## Future Architecture Considerations
 
 ### **Planned Enhancements**
 
@@ -821,6 +821,6 @@ graph LR
 
 *Engineered for Scale, Security, and Performance*
 
-[🏠 Back to README](./README.md) • [📚 Documentation](./docs) • [🤝 Contributing](./CONTRIBUTING.md)
+[Back to README](./README.md) • [Documentation](./docs) • [Contributing](./CONTRIBUTING.md)
 
 </div>
