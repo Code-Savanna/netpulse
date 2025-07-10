@@ -1,4 +1,4 @@
-# NetPulse 🌐
+# NetPulse
 
 <div align="center">
 
@@ -11,13 +11,13 @@
 
 *Professional-grade network infrastructure monitoring for telecoms, ISPs, and enterprise environments*
 
-[🚀 **Live Demo**](https://netpulse-demo.vercel.app) • [📖 **Documentation**](./docs) • [🏗️ **Architecture**](./ARCHITECTURE.md) • [🐛 **Report Bug**](https://github.com/yourusername/netpulse/issues)
+[**Live Demo**](https://netpulse-demo.vercel.app) • [**Documentation**](./docs) • [**Architecture**](./ARCHITECTURE.md) • [**Report Bug**](https://github.com/yourusername/netpulse/issues)
 
 </div>
 
 ---
 
-## 📋 Table of Contents
+## Table of Contents
 
 - [Overview](#-overview)
 - [Key Features](#-key-features)
@@ -35,7 +35,7 @@
 
 ---
 
-## 📋 Overview
+## Overview
 
 **NetPulse** is an enterprise-grade, real-time network monitoring dashboard engineered to replicate the comprehensive operations of a Network Operations Center (NOC). Designed with scalability, observability, and real-time feedback at its core, NetPulse empowers telecommunications providers, Internet Service Providers (ISPs), and infrastructure engineers to:
 
@@ -47,59 +47,59 @@
 
 ---
 
-## ✨ Key Features
+## Key Features
 
 <div align="center">
 
-| � **Feature Category** | **Capabilities** |
+| **Feature Category** | **Capabilities** |
 |------------------------|------------------|
-| **🔍 Real-time Monitoring** | Live server metrics (CPU, Memory, Network, Disk) • Device status indicators • Sub-second refresh rates via WebSocket |
-| **📊 Advanced Analytics** | Interactive charts • Historical trends • Custom dashboards • Performance benchmarking • SLA tracking |
-| **🚨 Intelligent Alerting** | Multi-threshold alerts • Anomaly detection • Alert correlation • Escalation policies • Noise reduction |
-| **📱 Multi-channel Notifications** | SMS (Africa's Talking) • Email (SendGrid) • Webhooks • Slack integration • Mobile push (planned) |
-| **🛠️ Administrative Controls** | Device management • RBAC • Audit logs • Compliance reporting • Bulk operations |
-| **🔄 High Availability** | Auto-failover • Horizontal scaling • Background processing • Database replication |
+| **Real-time Monitoring** | Live server metrics (CPU, Memory, Network, Disk) • Device status indicators • Sub-second refresh rates via WebSocket |
+| **Advanced Analytics** | Interactive charts • Historical trends • Custom dashboards • Performance benchmarking • SLA tracking |
+| **Intelligent Alerting** | Multi-threshold alerts • Anomaly detection • Alert correlation • Escalation policies • Noise reduction |
+| **Multi-channel Notifications** | SMS (Africa's Talking) • Email (SendGrid) • Webhooks • Slack integration • Mobile push (planned) |
+| **Administrative Controls** | Device management • RBAC • Audit logs • Compliance reporting • Bulk operations |
+| **High Availability** | Auto-failover • Horizontal scaling • Background processing • Database replication |
 
 </div>
 
-### 🎯 **Why Choose NetPulse?**
+### **Why Choose NetPulse?**
 
-- **🚀 Enterprise-Ready**: Built for production environments with 99.9% uptime SLA
-- **📈 Scalable**: Monitor 1000+ devices with horizontal scaling capabilities  
-- **🔒 Secure**: End-to-end encryption, RBAC, and comprehensive audit trails
-- **🌍 Global**: Multi-region deployment with edge caching for optimal performance
-- **🤖 Intelligent**: ML-powered anomaly detection and predictive analytics
-- **🔧 Extensible**: REST APIs, webhooks, and plugin architecture for integrations
+- **Enterprise-Ready**: Built for production environments with 99.9% uptime SLA
+- **Scalable**: Monitor 1000+ devices with horizontal scaling capabilities  
+- **Secure**: End-to-end encryption, RBAC, and comprehensive audit trails
+- **Global**: Multi-region deployment with edge caching for optimal performance
+- **Intelligent**: ML-powered anomaly detection and predictive analytics
+- **Extensible**: REST APIs, webhooks, and plugin architecture for integrations
 
 ---
 
-## 🎬 Live Demo & Screenshots
+## Live Demo & Screenshots
 
 <div align="center">
 
-### **🌟 Experience NetPulse in Action**
+### **Experience NetPulse in Action**
 
-[![Live Demo](https://img.shields.io/badge/🚀%20Live%20Demo-Try%20Now-brightgreen?style=for-the-badge&logo=vercel)](https://netpulse-demo.vercel.app)
-[![Video Demo](https://img.shields.io/badge/🎥%20Video%20Demo-Watch%20Now-red?style=for-the-badge&logo=youtube)](https://youtube.com/watch?v=demo)
+[![Live Demo](https://img.shields.io/badge/%20Live%20Demo-Try%20Now-brightgreen?style=for-the-badge&logo=vercel)](https://netpulse-demo.vercel.app)
+[![Video Demo](https://img.shields.io/badge/%20Video%20Demo-Watch%20Now-red?style=for-the-badge&logo=youtube)](https://youtube.com/watch?v=demo)
 
 </div>
 
-### **📸 Interface Previews**
+### **Interface Previews**
 
 <div align="center">
 
-| **🖥️ Dashboard** | **📊 Analytics** | **🚨 Alerts** |
+| **Dashboard** | **Analytics** | **Alerts** |
 |:---:|:---:|:---:|
 | ![Dashboard](https://via.placeholder.com/300x200/1e293b/ffffff?text=Real-time+Dashboard) | ![Analytics](https://via.placeholder.com/300x200/059669/ffffff?text=Advanced+Analytics) | ![Alerts](https://via.placeholder.com/300x200/dc2626/ffffff?text=Alert+Management) |
 | Real-time network monitoring | Historical data & trends | Alert management console |
 
 </div>
 
-> 📝 **Note**: Demo environment includes sample data for testing. Full deployment requires configuration.
+> **Note**: Demo environment includes sample data for testing. Full deployment requires configuration.
 
 ---
 
-## 🏗️ Technology Stack
+## Technology Stack
 
 <div align="center">
 
@@ -118,47 +118,47 @@
 
 ---
 
-## 📁 Project Architecture
+## Project Architecture
 
 ```
 netpulse/
-├── 📂 netpulse_backend/          # FastAPI backend services
-│   ├── 📂 app/
-│   │   ├── 📂 api/               # REST API endpoints
-│   │   ├── 📂 core/              # Configuration and security
-│   │   ├── 📂 models/            # Database models
-│   │   ├── 📂 services/          # Business logic
-│   │   └── 📂 utils/             # Helper functions
-│   ├── 📂 tests/                 # Backend test suite
-│   ├── 📂 alembic/               # Database migrations
+├──  netpulse_backend/          # FastAPI backend services
+│   ├──  app/
+│   │   ├──  api/               # REST API endpoints
+│   │   ├──  core/              # Configuration and security
+│   │   ├──  models/            # Database models
+│   │   ├──  services/          # Business logic
+│   │   └──  utils/             # Helper functions
+│   ├──  tests/                 # Backend test suite
+│   ├──  alembic/               # Database migrations
 │   ├── requirements.txt
 │   └── Dockerfile
-├── 📂 netpulse_frontend/         # React.js dashboard
-│   ├── 📂 src/
-│   │   ├── 📂 components/        # Reusable UI components
-│   │   ├── 📂 pages/             # Application pages
-│   │   ├── 📂 hooks/             # Custom React hooks
-│   │   ├── 📂 services/          # API integration
-│   │   └── 📂 utils/             # Frontend utilities
-│   ├── 📂 public/                # Static assets
+├──  netpulse_frontend/         # React.js dashboard
+│   ├──  src/
+│   │   ├──  components/        # Reusable UI components
+│   │   ├──  pages/             # Application pages
+│   │   ├──  hooks/             # Custom React hooks
+│   │   ├──  services/          # API integration
+│   │   └──  utils/             # Frontend utilities
+│   ├──  public/                # Static assets
 │   ├── package.json
 │   └── Dockerfile
-├── 📂 docs/                      # Documentation
-├── 📂 scripts/                   # Deployment scripts
-├── 📄 docker-compose.yml         # Multi-service orchestration
-├── 📄 docker-compose.prod.yml    # Production configuration
-├── 📄 ARCHITECTURE.md            # Detailed architecture guide
-├── 📄 CONTRIBUTING.md            # Contribution guidelines
-└── 📄 README.md                  # This file
+├──  docs/                      # Documentation
+├──  scripts/                   # Deployment scripts
+├──  docker-compose.yml         # Multi-service orchestration
+├──  docker-compose.prod.yml    # Production configuration
+├──  ARCHITECTURE.md            # Detailed architecture guide
+├──  CONTRIBUTING.md            # Contribution guidelines
+└──  README.md                  # This file
 ```
 
-> 📋 **For detailed system architecture, see [ARCHITECTURE.md](./ARCHITECTURE.md)**
+> **For detailed system architecture, see [ARCHITECTURE.md](./ARCHITECTURE.md)**
 
 ---
 
-## 🚀 Quick Start
+## Quick Start
 
-### � **Option 1: Docker (Recommended)**
+### **Option 1: Docker (Recommended)**
 
 ```bash
 # Clone and start the entire stack
@@ -170,10 +170,10 @@ docker-compose up --build -d
 docker-compose ps
 ```
 
-### 🛠️ **Option 2: Local Development**
+### **Option 2: Local Development**
 
 <details>
-<summary><strong>📋 Prerequisites & Setup Instructions</strong></summary>
+<summary><strong>Prerequisites & Setup Instructions</strong></summary>
 
 **Prerequisites:**
 - Docker (v24.0+) & Docker Compose
@@ -195,21 +195,21 @@ npm install && npm start
 ```
 </details>
 
-### 🌐 **Access the Application**
+### **Access the Application**
 
 <div align="center">
 
-| 🎯 **Service** | 🔗 **URL** | 📝 **Description** |
+| **Service** | **URL** | **Description** |
 |---------------|------------|-------------------|
-| **🖥️ Dashboard** | [localhost:3000](http://localhost:3000) | Main monitoring interface |
-| **⚡ API** | [localhost:8000](http://localhost:8000) | REST API endpoints |
-| **📚 API Docs** | [localhost:8000/docs](http://localhost:8000/docs) | Interactive Swagger UI |
-| **🔧 Admin** | [localhost:3000/admin](http://localhost:3000/admin) | Administrative panel |
-| **📊 Grafana** | [localhost:3001](http://localhost:3001) | System metrics |
+| **Dashboard** | [localhost:3000](http://localhost:3000) | Main monitoring interface |
+| **API** | [localhost:8000](http://localhost:8000) | REST API endpoints |
+| **API Docs** | [localhost:8000/docs](http://localhost:8000/docs) | Interactive Swagger UI |
+| **Admin** | [localhost:3000/admin](http://localhost:3000/admin) | Administrative panel |
+| **Grafana** | [localhost:3001](http://localhost:3001) | System metrics |
 
 </div>
 
-### ✅ **Health Check**
+### **Health Check**
 
 ```bash
 # Quick health verification
@@ -220,14 +220,14 @@ curl http://localhost:8000/health/redis # Cache connectivity
 
 ---
 
-## ⚙️ Configuration
+## Configuration
 
-### 🔑 **Environment Setup**
+### **Environment Setup**
 
 Create a `.env` file in the backend directory:
 
 <details>
-<summary><strong>📄 Complete Environment Configuration</strong></summary>
+<summary><strong>Complete Environment Configuration</strong></summary>
 
 ```env
 # Database Configuration
@@ -255,7 +255,7 @@ ENABLE_WEBHOOK_ALERTS=true
 ```
 </details>
 
-### 📊 **Monitoring Parameters**
+### **Monitoring Parameters**
 
 | Parameter | Default | Description |
 |-----------|---------|-------------|
@@ -265,11 +265,11 @@ ENABLE_WEBHOOK_ALERTS=true
 | **Data Retention** | 90 days | Historical data storage |
 ---
 
-## 📚 Documentation
+## Documentation
 
 <div align="center">
 
-| 📖 **Document** | 🎯 **Purpose** | 🔗 **Link** |
+| **Document** | **Purpose** | **Link** |
 |----------------|----------------|-------------|
 | **Architecture Guide** | System design & architecture | [ARCHITECTURE.md](./ARCHITECTURE.md) |
 | **API Reference** | Complete REST API docs | [API Docs](./docs/api.md) |
@@ -281,9 +281,9 @@ ENABLE_WEBHOOK_ALERTS=true
 
 ---
 
-## 🧪 Testing
+## Testing
 
-### **🚀 Run Test Suite**
+### **Run Test Suite**
 
 ```bash
 # Backend testing
@@ -296,24 +296,24 @@ cd netpulse_frontend && npm test
 npm run test:e2e
 ```
 
-### **📊 Test Coverage**
+### **Test Coverage**
 
 <div align="center">
 
 | **Component** | **Coverage** | **Status** |
 |--------------|-------------|-----------|
-| **Backend** | >90% | ✅ Excellent |
-| **Frontend** | >85% | ✅ Good |
-| **Integration** | Critical paths | ✅ Covered |
-| **Performance** | 10k concurrent users | ✅ Load tested |
+| **Backend** | >90% | Excellent |
+| **Frontend** | >85% | Good |
+| **Integration** | Critical paths | Covered |
+| **Performance** | 10k concurrent users | Load tested |
 
 </div>
 
 ---
 
-## 🚀 Deployment
+## Deployment
 
-### **🐳 Production Deployment**
+### **Production Deployment**
 
 ```bash
 # Build & deploy production stack
@@ -324,43 +324,78 @@ docker-compose -f docker-compose.prod.yml up -d
 docker-compose exec backend alembic upgrade head
 ```
 
-### **☁️ Cloud Platforms**
+### **Cloud Platforms**
 
 <div align="center">
 
 | **Platform** | **Status** | **Use Case** |
 |-------------|-----------|-------------|
-| **Render** | ✅ Active | Backend API hosting |
-| **Vercel** | ✅ Active | Frontend deployment |
-| **AWS ECS** | 🔄 In Progress | Container orchestration |
-| **Kubernetes** | 📋 Planned | Enterprise scaling |
+| **Render** | Active | Backend API hosting |
+| **Vercel** | Active | Frontend deployment |
+| **AWS ECS** | In Progress | Container orchestration |
+| **Kubernetes** | Planned | Enterprise scaling |
 
 </div>
 
 ---
 
-## 🤝 Contributing
+## Contributing
 
-### **🔄 Development Workflow**
+### **Development Workflow**
 
-1. 🍴 **Fork** the repository
-2. 🌿 **Create** feature branch: `git checkout -b feature/amazing-feature`
-3. 💾 **Commit** changes: `git commit -m 'Add amazing feature'`
-4. 📤 **Push** branch: `git push origin feature/amazing-feature`
-5. 🔀 **Open** Pull Request
+1. **Fork** the repository
+2. **Create** feature branch: `git checkout -b feature/amazing-feature`
+3. **Commit** changes: `git commit -m 'Add amazing feature'`
+4. **Push** branch: `git push origin feature/amazing-feature`
+5. **Open** Pull Request
 
-### **📋 Code Standards**
+### **Code Standards**
 
 - **Python**: Black formatting, Flake8 linting, type hints required
 - **TypeScript**: Prettier formatting, ESLint compliance
 - **Testing**: Minimum 80% coverage for new features
 - **Documentation**: Update docs with all changes
 
-> 💡 **New to contributing?** Check our [Contributing Guidelines](./CONTRIBUTING.md) for detailed instructions!
+> **New to contributing?** Check our [Contributing Guidelines](./CONTRIBUTING.md) for detailed instructions!
 
 ---
 
-## 📄 License
+## License
 
 This project is licensed under the **MIT License** - see the [LICENSE](LICENSE) file for details.
+
+---
+
+## Author & Support
+
+<div align="center">
+
+### **Dabwitso Mweemba**
+*Co-founder & Lead Developer*  
+[Code Savanna](https://codesavanna.org) • [Learniva AI](https://learniva.ai)
+
+[![LinkedIn](https://img.shields.io/badge/LinkedIn-0077B5?style=for-the-badge&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/dabwitso-mweemba)
+[![GitHub](https://img.shields.io/badge/GitHub-100000?style=for-the-badge&logo=github&logoColor=white)](https://github.com/dabwitso)
+[![Website](https://img.shields.io/badge/Website-FF5722?style=for-the-badge&logo=google-chrome&logoColor=white)](https://codesavanna.org)
+
+**Lusaka, Zambia**
+
+---
+
+### **Show Your Support**
+
+If NetPulse helps your projects:
+
+- **Star** this repository
+- **Report** bugs and suggest features
+- **Share** with your network
+- **Contribute** to the codebase
+
+---
+
+**Built with ❤️ for the Network Operations Community**
+
+*NetPulse - Empowering Network Engineers Worldwide*
+
+</div>
 
