@@ -1,0 +1,43 @@
+version: '3.8'
+
+services:
+  backend:
+    build: ./netpulse_backend
+    ports:
+      - "8000:8000"
+    volumes:
+      - ./netpulse_backend:/app
+    env_file:
+      - ./netpulse_backend/.env
+    depends_on:
+      - db
+      - redis
+
+  frontend:
+    build: ./netpulse_frontend
+    ports:
+      - "3000:3000"
+    volumes:
+      - ./netpulse_frontend:/app
+      - /app/node_modules
+    depends_on:
+      - backend
+
+  db:
+    image: postgres:15-alpine
+    volumes:
+      - postgres_data:/var/lib/postgresql/data/
+    environment:
+      - POSTGRES_USER=netpulse
+      - POSTGRES_PASSWORD=password
+      - POSTGRES_DB=netpulse
+    ports:
+      - "5432:5432"
+
+  redis:
+    image: redis:7-alpine
+    ports:
+      - "6379:6379"
+
+volumes:
+  postgres_data:
