@@ -2,22 +2,7 @@
 
 <div align="center">
 
-[![Project Status](https://img.shields.io/badge/Status-In%20Deve## 🏗️ Technology Stack
-
-<div align="center">
-
-| **Layer** | **Technology** | **Purpose** |
-|-----------|----------------|-------------|
-| **Frontend** | ![React](https://img.shields.io/badge/React-18.x-61DAFB?logo=react) ![Tailwind](https://img.shields.io/badge/Tailwind-3.x-06B6D4?logo=tailwindcss) ![TypeScript](https://img.shields.io/badge/TypeScript-5.x-3178C6?logo=typescript) | Modern, responsive user interface |
-| **Backend** | ![FastAPI](https://img.shields.io/badge/FastAPI-0.104-009688?logo=fastapi) ![Python](https://img.shields.io/badge/Python-3.11-3776AB?logo=python) ![SQLAlchemy](https://img.shields.io/badge/SQLAlchemy-2.x-D71F00?logo=sqlalchemy) | High-performance API and ORM |
-| **Database** | ![PostgreSQL](https://img.shields.io/badge/PostgreSQL-15-336791?logo=postgresql) ![Redis](https://img.shields.io/badge/Redis-7.x-DC382D?logo=redis) | Primary database and caching |
-| **Real-time** | ![WebSocket](https://img.shields.io/badge/WebSocket-Native-010101?logo=websocket) | Live data streaming |
-| **Task Queue** | ![Celery](https://img.shields.io/badge/Celery-5.x-37B24D?logo=celery) | Background job processing |
-| **Monitoring** | ![Prometheus](https://img.shields.io/badge/Prometheus-2.x-E6522C?logo=prometheus) ![Grafana](https://img.shields.io/badge/Grafana-10.x-F46800?logo=grafana) | System observability |
-| **DevOps** | ![Docker](https://img.shields.io/badge/Docker-24.x-2496ED?logo=docker) ![GitHub Actions](https://img.shields.io/badge/GitHub%20Actions-2088FF?logo=githubactions) | Containerization and CI/CD |
-| **Cloud** | ![Render](https://img.shields.io/badge/Render-Backend-46E3B7?logo=render) ![Vercel](https://img.shields.io/badge/Vercel-Frontend-000000?logo=vercel) | Production deployment |
-
-</div>nge?style=for-the-badge)](https://github.com/yourusername/netpulse)
+[![Project Status](https://img.shields.io/badge/Status-In%20Development-blue?style=for-the-badge)](https://github.com/yourusername/netpulse)
 [![Version](https://img.shields.io/badge/Version-1.0.0--beta-blue?style=for-the-badge)](https://github.com/yourusername/netpulse/releases)
 [![License](https://img.shields.io/badge/License-MIT-green?style=for-the-badge)](LICENSE)
 [![Build Status](https://img.shields.io/badge/Build-Passing-brightgreen?style=for-the-badge)](https://github.com/yourusername/netpulse/actions)
@@ -37,10 +22,10 @@
 - [Overview](#-overview)
 - [Key Features](#-key-features)
 - [Live Demo & Screenshots](#-live-demo--screenshots)
-- [Technology Stack](#-technology-stack)
-- [Project Structure](#-project-structure)
+- [Technology Stack](#️-technology-stack)
+- [Project Architecture](#-project-architecture)
 - [Quick Start](#-quick-start)
-- [Configuration](#-configuration)
+- [Configuration](#️-configuration)
 - [Documentation](#-documentation)
 - [Testing](#-testing)
 - [Deployment](#-deployment)
@@ -116,15 +101,20 @@
 
 ## 🏗️ Technology Stack
 
-| Layer           | Technology               |
-|----------------|--------------------------|
-| Frontend        | React.js, Tailwind CSS, Recharts |
-| Backend         | FastAPI (Python), SQLAlchemy, PostgreSQL |
-| Realtime Engine | WebSocket (FastAPI native) |
-| Task Queue      | Celery + Redis           |
-| Notifications   | Africa’s Talking API (SMS), SendGrid (Email) |
-| DevOps          | Docker + Docker Compose, GitHub Actions (CI/CD) |
-| Deployment      | Render (Backend), Vercel (Frontend) |
+<div align="center">
+
+| **Layer** | **Technology** | **Purpose** |
+|-----------|----------------|-------------|
+| **Frontend** | ![React](https://img.shields.io/badge/React-18.x-61DAFB?logo=react) ![Tailwind](https://img.shields.io/badge/Tailwind-3.x-06B6D4?logo=tailwindcss) ![TypeScript](https://img.shields.io/badge/TypeScript-5.x-3178C6?logo=typescript) | Modern, responsive user interface |
+| **Backend** | ![FastAPI](https://img.shields.io/badge/FastAPI-0.104-009688?logo=fastapi) ![Python](https://img.shields.io/badge/Python-3.11-3776AB?logo=python) ![SQLAlchemy](https://img.shields.io/badge/SQLAlchemy-2.x-D71F00?logo=sqlalchemy) | High-performance API and ORM |
+| **Database** | ![PostgreSQL](https://img.shields.io/badge/PostgreSQL-15-336791?logo=postgresql) ![Redis](https://img.shields.io/badge/Redis-7.x-DC382D?logo=redis) | Primary database and caching |
+| **Real-time** | ![WebSocket](https://img.shields.io/badge/WebSocket-Native-010101?logo=websocket) | Live data streaming |
+| **Task Queue** | ![Celery](https://img.shields.io/badge/Celery-5.x-37B24D?logo=celery) | Background job processing |
+| **Monitoring** | ![Prometheus](https://img.shields.io/badge/Prometheus-2.x-E6522C?logo=prometheus) ![Grafana](https://img.shields.io/badge/Grafana-10.x-F46800?logo=grafana) | System observability |
+| **DevOps** | ![Docker](https://img.shields.io/badge/Docker-24.x-2496ED?logo=docker) ![GitHub Actions](https://img.shields.io/badge/GitHub%20Actions-2088FF?logo=githubactions) | Containerization and CI/CD |
+| **Cloud** | ![Render](https://img.shields.io/badge/Render-Backend-46E3B7?logo=render) ![Vercel](https://img.shields.io/badge/Vercel-Frontend-000000?logo=vercel) | Production deployment |
+
+</div>
 
 ---
 
@@ -232,7 +222,7 @@ curl http://localhost:8000/health/redis # Cache connectivity
 
 ## ⚙️ Configuration
 
-### � **Environment Setup**
+### 🔑 **Environment Setup**
 
 Create a `.env` file in the backend directory:
 
