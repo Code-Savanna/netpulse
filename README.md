@@ -364,37 +364,3 @@ docker-compose exec backend alembic upgrade head
 
 This project is licensed under the **MIT License** - see the [LICENSE](LICENSE) file for details.
 
----
-
-## 👨‍💻 Author & Support
-
-<div align="center">
-
-### **Dabwitso Mweemba**
-*Co-founder & Lead Developer*  
-[Code Savanna](https://codesavanna.org) • [Learniva AI](https://learniva.ai)
-
-[![LinkedIn](https://img.shields.io/badge/LinkedIn-0077B5?style=for-the-badge&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/dabwitso-mweemba)
-[![GitHub](https://img.shields.io/badge/GitHub-100000?style=for-the-badge&logo=github&logoColor=white)](https://github.com/dabwitso)
-[![Website](https://img.shields.io/badge/Website-FF5722?style=for-the-badge&logo=google-chrome&logoColor=white)](https://codesavanna.org)
-
-📍 **Lusaka, Zambia** 🇿🇲
-
----
-
-### **⭐ Show Your Support**
-
-If NetPulse helps your projects:
-
-- ⭐ **Star** this repository
-- 🐛 **Report** bugs and suggest features
-- 📢 **Share** with your network
-- 💝 **Contribute** to the codebase
-
----
-
-**Built with ❤️ for the Network Operations Community**
-
-*NetPulse - Empowering Network Engineers Worldwide*
-
-</div>
