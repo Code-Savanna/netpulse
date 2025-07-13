@@ -1,5 +1,6 @@
 fastapi
-uvicorn
+uvicorn[standard]
+websockets
 sqlalchemy
 psycopg2-binary
 alembic
@@ -10,3 +11,6 @@ pydantic[email]
 passlib[bcrypt]
 python-jose[cryptography]
 pydantic-settings
+celery[redis,amqp]
+flower
+prometheus_client
