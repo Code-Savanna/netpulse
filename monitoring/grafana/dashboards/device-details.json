@@ -1,0 +1,347 @@
+{
+  "dashboard": {
+    "id": null,
+    "title": "Device Details Dashboard",
+    "tags": ["netpulse", "device", "details"],
+    "timezone": "browser",
+    "panels": [
+      {
+        "id": 1,
+        "title": "Device Information",
+        "type": "table",
+        "targets": [
+          {
+            "expr": "device_info",
+            "legendFormat": "",
+            "format": "table",
+            "instant": true
+          }
+        ],
+        "gridPos": {"h": 8, "w": 24, "x": 0, "y": 0},
+        "fieldConfig": {
+          "defaults": {
+            "custom": {
+              "align": "auto",
+              "displayMode": "auto"
+            },
+            "mappings": [],
+            "thresholds": {
+              "mode": "absolute",
+              "steps": [
+                {"color": "green", "value": null}
+              ]
+            }
+          },
+          "overrides": [
+            {
+              "matcher": {"id": "byName", "options": "status"},
+              "properties": [
+                {
+                  "id": "mappings",
+                  "value": [
+                    {
+                      "options": {
+                        "online": {"color": "green", "index": 0},
+                        "offline": {"color": "red", "index": 1}
+                      },
+                      "type": "value"
+                    }
+                  ]
+                },
+                {
+                  "id": "custom.displayMode",
+                  "value": "color-background"
+                }
+              ]
+            }
+          ]
+        },
+        "options": {
+          "showHeader": true
+        },
+        "transformations": [
+          {
+            "id": "organize",
+            "options": {
+              "excludeByName": {
+                "__name__": true,
+                "job": true,
+                "instance": true
+              },
+              "indexByName": {},
+              "renameByName": {
+                "device_name": "Device Name",
+                "ip_address": "IP Address",
+                "device_type": "Type",
+                "location": "Location",
+                "status": "Status",
+                "last_seen": "Last Seen"
+              }
+            }
+          }
+        ]
+      },
+      {
+        "id": 2,
+        "title": "Response Time Trend (24h)",
+        "type": "timeseries",
+        "targets": [
+          {
+            "expr": "device_response_time_ms{device_name=~\"$device\"}",
+            "legendFormat": "{{ device_name }}"
+          }
+        ],
+        "gridPos": {"h": 8, "w": 12, "x": 0, "y": 8},
+        "fieldConfig": {
+          "defaults": {
+            "color": {"mode": "palette-classic"},
+            "custom": {
+              "drawStyle": "line",
+              "lineInterpolation": "linear",
+              "barAlignment": 0,
+              "lineWidth": 1,
+              "fillOpacity": 10,
+              "gradientMode": "none",
+              "spanNulls": false,
+              "insertNulls": false,
+              "showPoints": "never",
+              "pointSize": 5,
+              "stacking": {"mode": "none", "group": "A"},
+              "axisPlacement": "auto",
+              "axisLabel": "",
+              "axisColorMode": "text",
+              "scaleDistribution": {"type": "linear"},
+              "hideFrom": {
+                "tooltip": false,
+                "vis": false,
+                "legend": false
+              },
+              "thresholdsStyle": {"mode": "line"}
+            },
+            "mappings": [],
+            "thresholds": {
+              "mode": "absolute",
+              "steps": [
+                {"color": "green", "value": null},
+                {"color": "yellow", "value": 1000},
+                {"color": "red", "value": 5000}
+              ]
+            },
+            "unit": "ms"
+          }
+        },
+        "options": {
+          "tooltip": {"mode": "single", "sort": "none"},
+          "legend": {
+            "displayMode": "visible",
+            "placement": "bottom",
+            "calcs": ["mean", "max", "min"]
+          }
+        }
+      },
+      {
+        "id": 3,
+        "title": "Uptime Statistics",
+        "type": "stat",
+        "targets": [
+          {
+            "expr": "avg_over_time(device_status{device_name=~\"$device\"}[24h]) * 100",
+            "legendFormat": "24h Uptime %"
+          },
+          {
+            "expr": "avg_over_time(device_status{device_name=~\"$device\"}[7d]) * 100",
+            "legendFormat": "7d Uptime %"
+          },
+          {
+            "expr": "avg_over_time(device_status{device_name=~\"$device\"}[30d]) * 100",
+            "legendFormat": "30d Uptime %"
+          }
+        ],
+        "gridPos": {"h": 8, "w": 12, "x": 12, "y": 8},
+        "fieldConfig": {
+          "defaults": {
+            "color": {"mode": "thresholds"},
+            "mappings": [],
+            "thresholds": {
+              "mode": "absolute",
+              "steps": [
+                {"color": "red", "value": null},
+                {"color": "yellow", "value": 95},
+                {"color": "green", "value": 99}
+              ]
+            },
+            "unit": "percent",
+            "min": 0,
+            "max": 100
+          }
+        },
+        "options": {
+          "reduceOptions": {
+            "values": false,
+            "calcs": ["lastNotNull"],
+            "fields": ""
+          },
+          "orientation": "auto",
+          "textMode": "auto",
+          "colorMode": "background",
+          "graphMode": "area",
+          "justifyMode": "auto"
+        }
+      },
+      {
+        "id": 4,
+        "title": "Packet Loss",
+        "type": "timeseries",
+        "targets": [
+          {
+            "expr": "device_packet_loss_percent{device_name=~\"$device\"}",
+            "legendFormat": "{{ device_name }} Packet Loss"
+          }
+        ],
+        "gridPos": {"h": 8, "w": 12, "x": 0, "y": 16},
+        "fieldConfig": {
+          "defaults": {
+            "color": {"mode": "palette-classic"},
+            "custom": {
+              "drawStyle": "line",
+              "lineInterpolation": "linear",
+              "barAlignment": 0,
+              "lineWidth": 1,
+              "fillOpacity": 10,
+              "gradientMode": "none",
+              "spanNulls": false,
+              "insertNulls": false,
+              "showPoints": "never",
+              "pointSize": 5,
+              "stacking": {"mode": "none", "group": "A"},
+              "axisPlacement": "auto",
+              "axisLabel": "",
+              "axisColorMode": "text",
+              "scaleDistribution": {"type": "linear"},
+              "hideFrom": {
+                "tooltip": false,
+                "vis": false,
+                "legend": false
+              },
+              "thresholdsStyle": {"mode": "line"}
+            },
+            "mappings": [],
+            "thresholds": {
+              "mode": "absolute",
+              "steps": [
+                {"color": "green", "value": null},
+                {"color": "yellow", "value": 1},
+                {"color": "red", "value": 5}
+              ]
+            },
+            "unit": "percent",
+            "min": 0,
+            "max": 100
+          }
+        },
+        "options": {
+          "tooltip": {"mode": "single", "sort": "none"},
+          "legend": {
+            "displayMode": "visible",
+            "placement": "bottom",
+            "calcs": ["mean", "max"]
+          }
+        }
+      },
+      {
+        "id": 5,
+        "title": "Device Events Timeline",
+        "type": "logs",
+        "targets": [
+          {
+            "expr": "{job=\"netpulse-backend\"} |= \"$device\"",
+            "legendFormat": ""
+          }
+        ],
+        "gridPos": {"h": 8, "w": 12, "x": 12, "y": 16},
+        "options": {
+          "showTime": true,
+          "showLabels": false,
+          "showCommonLabels": false,
+          "wrapLogMessage": true,
+          "prettifyLogMessage": false,
+          "enableLogDetails": true,
+          "dedupStrategy": "none",
+          "sortOrder": "Descending"
+        }
+      }
+    ],
+    "time": {
+      "from": "now-24h",
+      "to": "now"
+    },
+    "timepicker": {},
+    "templating": {
+      "list": [
+        {
+          "allValue": ".*",
+          "current": {
+            "selected": false,
+            "text": "All",
+            "value": "$__all"
+          },
+          "datasource": "Prometheus",
+          "definition": "label_values(device_info, device_name)",
+          "hide": 0,
+          "includeAll": true,
+          "label": "Device",
+          "multi": true,
+          "name": "device",
+          "options": [],
+          "query": {
+            "query": "label_values(device_info, device_name)",
+            "refId": "StandardVariableQuery"
+          },
+          "refresh": 1,
+          "regex": "",
+          "skipUrlSync": false,
+          "sort": 1,
+          "type": "query"
+        }
+      ]
+    },
+    "annotations": {
+      "list": [
+        {
+          "name": "Device Events",
+          "enable": true,
+          "iconColor": "rgba(255, 96, 96, 1)",
+          "type": "dashboard",
+          "builtIn": 1,
+          "hide": false
+        }
+      ]
+    },
+    "refresh": "30s",
+    "schemaVersion": 27,
+    "version": 0,
+    "links": []
+  },
+  "meta": {
+    "type": "db",
+    "canSave": true,
+    "canEdit": true,
+    "canAdmin": true,
+    "canStar": true,
+    "slug": "device-details",
+    "url": "/d/device-details/device-details-dashboard",
+    "expires": "0001-01-01T00:00:00Z",
+    "created": "0001-01-01T00:00:00Z",
+    "updated": "0001-01-01T00:00:00Z",
+    "updatedBy": "",
+    "createdBy": "",
+    "version": 1,
+    "hasAcl": false,
+    "isFolder": false,
+    "folderId": 0,
+    "folderTitle": "General",
+    "folderUrl": "",
+    "provisioned": true,
+    "provisionedExternalId": ""
+  }
+}

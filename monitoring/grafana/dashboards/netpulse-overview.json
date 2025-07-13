@@ -1,0 +1,299 @@
+{
+  "dashboard": {
+    "id": null,
+    "title": "NetPulse - Network Operations Center",
+    "tags": ["netpulse", "network", "monitoring"],
+    "timezone": "browser",
+    "panels": [
+      {
+        "id": 1,
+        "title": "Network Overview",
+        "type": "stat",
+        "targets": [
+          {
+            "expr": "count(device_status)",
+            "legendFormat": "Total Devices"
+          },
+          {
+            "expr": "count(device_status{status=\"online\"})",
+            "legendFormat": "Online Devices"
+          },
+          {
+            "expr": "count(device_status{status=\"offline\"})",
+            "legendFormat": "Offline Devices"
+          }
+        ],
+        "gridPos": {"h": 8, "w": 12, "x": 0, "y": 0},
+        "fieldConfig": {
+          "defaults": {
+            "color": {"mode": "palette-classic"},
+            "custom": {
+              "displayMode": "list",
+              "orientation": "horizontal"
+            },
+            "mappings": [],
+            "thresholds": {
+              "steps": [
+                {"color": "green", "value": null},
+                {"color": "red", "value": 80}
+              ]
+            }
+          }
+        }
+      },
+      {
+        "id": 2,
+        "title": "Device Status Distribution",
+        "type": "piechart",
+        "targets": [
+          {
+            "expr": "count by (status) (device_status)",
+            "legendFormat": "{{ status }}"
+          }
+        ],
+        "gridPos": {"h": 8, "w": 12, "x": 12, "y": 0},
+        "fieldConfig": {
+          "defaults": {
+            "color": {"mode": "palette-classic"},
+            "custom": {
+              "hideFrom": {
+                "tooltip": false,
+                "vis": false,
+                "legend": false
+              }
+            },
+            "mappings": []
+          }
+        },
+        "options": {
+          "reduceOptions": {
+            "values": false,
+            "calcs": ["lastNotNull"],
+            "fields": ""
+          },
+          "pieType": "pie",
+          "tooltip": {"mode": "single"},
+          "legend": {
+            "displayMode": "visible",
+            "placement": "bottom"
+          }
+        }
+      },
+      {
+        "id": 3,
+        "title": "Device Response Times",
+        "type": "timeseries",
+        "targets": [
+          {
+            "expr": "device_response_time_ms",
+            "legendFormat": "{{ device_name }} ({{ ip_address }})"
+          }
+        ],
+        "gridPos": {"h": 8, "w": 24, "x": 0, "y": 8},
+        "fieldConfig": {
+          "defaults": {
+            "color": {"mode": "palette-classic"},
+            "custom": {
+              "drawStyle": "line",
+              "lineInterpolation": "linear",
+              "barAlignment": 0,
+              "lineWidth": 1,
+              "fillOpacity": 0,
+              "gradientMode": "none",
+              "spanNulls": false,
+              "insertNulls": false,
+              "showPoints": "auto",
+              "pointSize": 5,
+              "stacking": {"mode": "none", "group": "A"},
+              "axisPlacement": "auto",
+              "axisLabel": "",
+              "axisColorMode": "text",
+              "scaleDistribution": {"type": "linear"},
+              "hideFrom": {
+                "tooltip": false,
+                "vis": false,
+                "legend": false
+              },
+              "thresholdsStyle": {"mode": "off"}
+            },
+            "mappings": [],
+            "thresholds": {
+              "mode": "absolute",
+              "steps": [
+                {"color": "green", "value": null},
+                {"color": "yellow", "value": 1000},
+                {"color": "red", "value": 5000}
+              ]
+            },
+            "unit": "ms"
+          }
+        },
+        "options": {
+          "tooltip": {"mode": "single", "sort": "none"},
+          "legend": {
+            "displayMode": "visible",
+            "placement": "bottom",
+            "calcs": []
+          }
+        }
+      },
+      {
+        "id": 4,
+        "title": "Device Status Timeline",
+        "type": "timeseries",
+        "targets": [
+          {
+            "expr": "device_status",
+            "legendFormat": "{{ device_name }} - {{ status }}"
+          }
+        ],
+        "gridPos": {"h": 8, "w": 24, "x": 0, "y": 16},
+        "fieldConfig": {
+          "defaults": {
+            "color": {"mode": "palette-classic"},
+            "custom": {
+              "drawStyle": "line",
+              "lineInterpolation": "stepAfter",
+              "barAlignment": 0,
+              "lineWidth": 2,
+              "fillOpacity": 10,
+              "gradientMode": "none",
+              "spanNulls": false,
+              "insertNulls": false,
+              "showPoints": "always",
+              "pointSize": 5,
+              "stacking": {"mode": "none", "group": "A"},
+              "axisPlacement": "auto",
+              "axisLabel": "",
+              "axisColorMode": "text",
+              "scaleDistribution": {"type": "linear"},
+              "hideFrom": {
+                "tooltip": false,
+                "vis": false,
+                "legend": false
+              },
+              "thresholdsStyle": {"mode": "off"}
+            },
+            "mappings": [
+              {
+                "options": {
+                  "0": {"text": "Offline", "color": "red"},
+                  "1": {"text": "Online", "color": "green"}
+                },
+                "type": "value"
+              }
+            ],
+            "thresholds": {
+              "mode": "absolute",
+              "steps": [
+                {"color": "red", "value": null},
+                {"color": "green", "value": 1}
+              ]
+            },
+            "min": 0,
+            "max": 1
+          }
+        },
+        "options": {
+          "tooltip": {"mode": "single", "sort": "none"},
+          "legend": {
+            "displayMode": "visible",
+            "placement": "bottom",
+            "calcs": []
+          }
+        }
+      },
+      {
+        "id": 5,
+        "title": "Alert Summary",
+        "type": "stat",
+        "targets": [
+          {
+            "expr": "count(ALERTS{alertstate=\"firing\"})",
+            "legendFormat": "Active Alerts"
+          },
+          {
+            "expr": "count(ALERTS{alertstate=\"firing\", severity=\"critical\"})",
+            "legendFormat": "Critical Alerts"
+          },
+          {
+            "expr": "count(ALERTS{alertstate=\"firing\", severity=\"warning\"})",
+            "legendFormat": "Warning Alerts"
+          }
+        ],
+        "gridPos": {"h": 6, "w": 24, "x": 0, "y": 24},
+        "fieldConfig": {
+          "defaults": {
+            "color": {"mode": "thresholds"},
+            "mappings": [],
+            "thresholds": {
+              "steps": [
+                {"color": "green", "value": null},
+                {"color": "yellow", "value": 1},
+                {"color": "red", "value": 5}
+              ]
+            }
+          }
+        },
+        "options": {
+          "reduceOptions": {
+            "values": false,
+            "calcs": ["lastNotNull"],
+            "fields": ""
+          },
+          "orientation": "auto",
+          "textMode": "auto",
+          "colorMode": "background",
+          "graphMode": "area",
+          "justifyMode": "auto"
+        }
+      }
+    ],
+    "time": {
+      "from": "now-1h",
+      "to": "now"
+    },
+    "timepicker": {},
+    "templating": {
+      "list": []
+    },
+    "annotations": {
+      "list": [
+        {
+          "name": "Annotations & Alerts",
+          "enable": true,
+          "iconColor": "rgba(0, 211, 255, 1)",
+          "type": "dashboard",
+          "builtIn": 1,
+          "hide": true
+        }
+      ]
+    },
+    "refresh": "5s",
+    "schemaVersion": 27,
+    "version": 0,
+    "links": []
+  },
+  "meta": {
+    "type": "db",
+    "canSave": true,
+    "canEdit": true,
+    "canAdmin": true,
+    "canStar": true,
+    "slug": "netpulse-noc",
+    "url": "/d/netpulse-noc/netpulse-network-operations-center",
+    "expires": "0001-01-01T00:00:00Z",
+    "created": "0001-01-01T00:00:00Z",
+    "updated": "0001-01-01T00:00:00Z",
+    "updatedBy": "",
+    "createdBy": "",
+    "version": 1,
+    "hasAcl": false,
+    "isFolder": false,
+    "folderId": 0,
+    "folderTitle": "General",
+    "folderUrl": "",
+    "provisioned": true,
+    "provisionedExternalId": ""
+  }
+}

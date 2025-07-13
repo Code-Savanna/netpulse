@@ -1,0 +1,84 @@
+groups:
+  - name: netpulse-alerts
+    rules:
+      - alert: DeviceOffline
+        expr: device_status{status="offline"} == 1
+        for: 1m
+        labels:
+          severity: critical
+          service: netpulse
+        annotations:
+          summary: "Device {{ $labels.device_name }} is offline"
+          description: "Device {{ $labels.device_name }} ({{ $labels.ip_address }}) has been offline for more than 1 minute."
+
+      - alert: DeviceHighResponseTime
+        expr: device_response_time_ms > 5000
+        for: 2m
+        labels:
+          severity: warning
+          service: netpulse
+        annotations:
+          summary: "Device {{ $labels.device_name }} has high response time"
+          description: "Device {{ $labels.device_name }} ({{ $labels.ip_address }}) response time is {{ $value }}ms, which is above the 5000ms threshold."
+
+      - alert: HighDeviceOfflineRate
+        expr: (sum(rate(device_status_changes{new_status="offline"}[5m])) / sum(rate(device_status_changes[5m]))) * 100 > 20
+        for: 3m
+        labels:
+          severity: warning
+          service: netpulse
+        annotations:
+          summary: "High device offline rate detected"
+          description: "{{ $value | humanizePercentage }} of devices are going offline, indicating potential network issues."
+
+      - alert: NetPulseBackendDown
+        expr: up{job="netpulse-backend"} == 0
+        for: 30s
+        labels:
+          severity: critical
+          service: netpulse
+        annotations:
+          summary: "NetPulse backend is down"
+          description: "The NetPulse backend service has been down for more than 30 seconds."
+
+      - alert: PrometheusTargetDown
+        expr: up == 0
+        for: 1m
+        labels:
+          severity: warning
+          service: monitoring
+        annotations:
+          summary: "Prometheus target {{ $labels.instance }} is down"
+          description: "Prometheus target {{ $labels.instance }} of job {{ $labels.job }} has been down for more than 1 minute."
+
+  - name: infrastructure-alerts
+    rules:
+      - alert: HighCPUUsage
+        expr: 100 - (avg by(instance) (irate(node_cpu_seconds_total{mode="idle"}[5m])) * 100) > 80
+        for: 5m
+        labels:
+          severity: warning
+          service: infrastructure
+        annotations:
+          summary: "High CPU usage on {{ $labels.instance }}"
+          description: "CPU usage is above 80% on instance {{ $labels.instance }} for more than 5 minutes."
+
+      - alert: HighMemoryUsage
+        expr: (1 - (node_memory_MemAvailable_bytes / node_memory_MemTotal_bytes)) * 100 > 90
+        for: 5m
+        labels:
+          severity: critical
+          service: infrastructure
+        annotations:
+          summary: "High memory usage on {{ $labels.instance }}"
+          description: "Memory usage is above 90% on instance {{ $labels.instance }} for more than 5 minutes."
+
+      - alert: DiskSpaceLow
+        expr: (1 - (node_filesystem_free_bytes{fstype!="tmpfs"} / node_filesystem_size_bytes{fstype!="tmpfs"})) * 100 > 85
+        for: 10m
+        labels:
+          severity: warning
+          service: infrastructure
+        annotations:
+          summary: "Low disk space on {{ $labels.instance }}"
+          description: "Disk usage is above 85% on mount point {{ $labels.mountpoint }} on instance {{ $labels.instance }}."
