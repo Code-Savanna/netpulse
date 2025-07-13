@@ -158,65 +158,35 @@ netpulse/
 
 ## Quick Start
 
-### **Option 1: Docker (Recommended)**
+### 1. Basic Setup (Development)
 
 ```bash
-# Clone and start the entire stack
-git clone https://github.com/yourusername/netpulse.git
+# Clone the repository
+git clone <repository-url>
 cd netpulse
-docker-compose up --build -d
 
-# Verify all services are running
-docker-compose ps
+# Start the development environment
+docker-compose up --build
 ```
 
-### **Option 2: Local Development**
-
-<details>
-<summary><strong>Prerequisites & Setup Instructions</strong></summary>
-
-**Prerequisites:**
-- Docker (v24.0+) & Docker Compose
-- Node.js (v18.0+) & Python (v3.11+)
-- Git
-
-**Backend Setup:**
-```bash
-cd netpulse_backend
-python -m venv venv
-source venv/bin/activate  # Windows: venv\Scripts\activate
-pip install -r requirements.txt
-```
-
-**Frontend Setup:**
-```bash
-cd netpulse_frontend
-npm install && npm start
-```
-</details>
-
-### **Access the Application**
-
-<div align="center">
-
-| **Service** | **URL** | **Description** |
-|---------------|------------|-------------------|
-| **Dashboard** | [localhost:3000](http://localhost:3000) | Main monitoring interface |
-| **API** | [localhost:8000](http://localhost:8000) | REST API endpoints |
-| **API Docs** | [localhost:8000/docs](http://localhost:8000/docs) | Interactive Swagger UI |
-| **Admin** | [localhost:3000/admin](http://localhost:3000/admin) | Administrative panel |
-| **Grafana** | [localhost:3001](http://localhost:3001) | System metrics |
-
-</div>
-
-### **Health Check**
+### 2. Production Setup with Monitoring
 
 ```bash
-# Quick health verification
-curl http://localhost:8000/health     # Backend status
-curl http://localhost:8000/health/db  # Database connectivity
-curl http://localhost:8000/health/redis # Cache connectivity
+# Start the full production stack with monitoring
+docker-compose -f docker-compose.prod.yml up --build -d
+
+# Or use the automated setup script
+./scripts/setup-monitoring.sh
 ```
+
+### 3. Access the Application
+
+| Service | URL | Credentials |
+|---------|-----|-------------|
+| **NetPulse App** | http://localhost:3000 | - |
+| **Grafana** | http://localhost:3001 | admin/admin |
+| **Prometheus** | http://localhost:9090 | - |
+| **AlertManager** | http://localhost:9093 | - |
 
 ---
 
