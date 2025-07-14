@@ -7,6 +7,23 @@ from celery.utils.log import get_task_logger
 
 logger = get_task_logger(__name__)
 
+class BackgroundTasks:
+    """Background tasks manager for the application"""
+    
+    def __init__(self):
+        self.monitoring_active = False
+    
+    def start_monitoring(self):
+        """Start the background monitoring tasks"""
+        logger.info("Starting background monitoring tasks...")
+        self.monitoring_active = True
+        # You can add periodic task scheduling here if needed
+        
+    def stop_monitoring(self):
+        """Stop the background monitoring tasks"""
+        logger.info("Stopping background monitoring tasks...")
+        self.monitoring_active = False
+
 @celery_app.task(name="monitor_devices_task")
 def monitor_devices_task():
     """
@@ -26,9 +43,12 @@ def monitor_devices_task():
 
     try:
         asyncio.run(run_monitoring())
+        logger.info("Device monitoring task finished.")
     finally:
         db.close()
-        logger.info("Device monitoring task finished.")
+
+# Create the background tasks instance
+background_tasks = BackgroundTasks()
 
 
 @celery_app.task(name="sample_task")
