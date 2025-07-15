@@ -5,7 +5,7 @@
 
 set -e
 
-echo "🚀 NetPulse Monitoring Setup Script"
+echo "NetPulse Monitoring Setup Script"
 echo "===================================="
 
 # Colors for output
@@ -189,26 +189,26 @@ validate_setup() {
 show_access_info() {
     print_step "Setup completed! Access information:"
     echo ""
-    echo "🌐 Web Interfaces:"
+    echo "Web Interfaces:"
     echo "  NetPulse App:    http://localhost:3000"
     echo "  Grafana:         http://localhost:3001 (admin/admin)"
     echo "  Prometheus:      http://localhost:9090"
     echo "  AlertManager:    http://localhost:9093"
     echo "  Flower (Celery): http://localhost:5555"
     echo ""
-    echo "📊 Dashboards:"
+    echo "Dashboards:"
     echo "  Network Overview: http://localhost:3001/d/netpulse-noc/netpulse-network-operations-center"
     echo "  Device Details:   http://localhost:3001/d/device-details/device-details-dashboard"
     echo ""
-    echo "🔧 Configuration Files:"
+    echo "Configuration Files:"
     echo "  Prometheus:    monitoring/prometheus.yml"
     echo "  AlertManager:  monitoring/alertmanager.yml"
     echo "  Alert Rules:   monitoring/alert_rules.yml"
     echo ""
-    echo "📚 Documentation:"
+    echo "Documentation:"
     echo "  See docs/monitoring.md for detailed configuration and troubleshooting"
     echo ""
-    echo "🚀 Next Steps:"
+    echo "Next Steps:"
     echo "  1. Add devices through the NetPulse web interface"
     echo "  2. Configure alert notifications in monitoring/alertmanager.yml"
     echo "  3. Customize dashboards in Grafana"
@@ -233,7 +233,7 @@ main() {
     show_access_info
     
     echo ""
-    print_status "NetPulse monitoring setup completed successfully! 🎉"
+    print_status "NetPulse monitoring setup completed successfully!"
 }
 
 # Handle script interruption

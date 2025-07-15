@@ -15,7 +15,7 @@ def check_service_health():
         "Node Exporter": "http://localhost:9100/metrics"
     }
     
-    print("🏥 NetPulse Monitoring Health Check")
+    print("NetPulse Monitoring Health Check")
     print("=" * 40)
     print(f"Timestamp: {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}")
     print()
@@ -26,12 +26,12 @@ def check_service_health():
         try:
             response = requests.get(url, timeout=5)
             if response.status_code == 200:
-                print(f"✅ {service_name:<15} - HEALTHY")
+                print(f"[PASS] {service_name:<15} - HEALTHY")
             else:
-                print(f"❌ {service_name:<15} - UNHEALTHY (HTTP {response.status_code})")
+                print(f"[FAIL] {service_name:<15} - UNHEALTHY (HTTP {response.status_code})")
                 all_healthy = False
         except requests.exceptions.RequestException as e:
-            print(f"❌ {service_name:<15} - UNREACHABLE ({str(e)[:50]}...)")
+            print(f"[FAIL] {service_name:<15} - UNREACHABLE ({str(e)[:50]}...)")
             all_healthy = False
     
     return all_healthy
@@ -44,7 +44,7 @@ def check_prometheus_targets():
             data = response.json()
             active_targets = data.get('data', {}).get('activeTargets', [])
             
-            print("\n🎯 Prometheus Targets:")
+            print("\nPrometheus Targets:")
             print("-" * 25)
             
             for target in active_targets:
@@ -52,7 +52,7 @@ def check_prometheus_targets():
                 health = target.get('health', 'unknown')
                 last_scrape = target.get('lastScrape', 'unknown')
                 
-                status_icon = "✅" if health == "up" else "❌"
+                status_icon = "[PASS]" if health == "up" else "[FAIL]"
                 print(f"{status_icon} {job:<20} - {health.upper()}")
             
             healthy_targets = len([t for t in active_targets if t.get('health') == 'up'])
@@ -61,10 +61,10 @@ def check_prometheus_targets():
             
             return healthy_targets == total_targets
         else:
-            print("❌ Could not fetch Prometheus targets")
+            print("[FAIL] Could not fetch Prometheus targets")
             return False
     except Exception as e:
-        print(f"❌ Error checking Prometheus targets: {e}")
+        print(f"[FAIL] Error checking Prometheus targets: {e}")
         return False
 
 def check_grafana_datasources():
@@ -78,20 +78,20 @@ def check_grafana_datasources():
         
         if response.status_code == 200:
             datasources = response.json()
-            print("\n📊 Grafana Data Sources:")
+            print("\nGrafana Data Sources:")
             print("-" * 26)
             
             for ds in datasources:
                 name = ds.get('name', 'unknown')
                 type_name = ds.get('type', 'unknown')
-                print(f"✅ {name:<15} - {type_name}")
+                print(f"[PASS] {name:<15} - {type_name}")
             
             return len(datasources) > 0
         else:
-            print("❌ Could not fetch Grafana data sources")
+            print("[FAIL] Could not fetch Grafana data sources")
             return False
     except Exception as e:
-        print(f"❌ Error checking Grafana data sources: {e}")
+        print(f"[FAIL] Error checking Grafana data sources: {e}")
         return False
 
 def check_metrics_availability():
@@ -102,10 +102,10 @@ def check_metrics_availability():
             metrics_data = response.text
             metric_lines = [line for line in metrics_data.split('\n') if line and not line.startswith('#')]
             
-            print("\n📈 Metrics Availability:")
+            print("\nMetrics Availability:")
             print("-" * 24)
-            print(f"✅ Metrics endpoint responding")
-            print(f"✅ {len(metric_lines)} metric samples available")
+            print(f"[PASS] Metrics endpoint responding")
+            print(f"[PASS] {len(metric_lines)} metric samples available")
             
             # Check for specific NetPulse metrics
             netpulse_metrics = [
@@ -116,16 +116,16 @@ def check_metrics_availability():
             
             for metric in netpulse_metrics:
                 if metric in metrics_data:
-                    print(f"✅ {metric} metric found")
+                    print(f"[PASS] {metric} metric found")
                 else:
-                    print(f"⚠️  {metric} metric missing")
+                    print(f"[WARN] {metric} metric missing")
             
             return True
         else:
-            print("❌ Metrics endpoint not responding")
+            print("[FAIL] Metrics endpoint not responding")
             return False
     except Exception as e:
-        print(f"❌ Error checking metrics: {e}")
+        print(f"[FAIL] Error checking metrics: {e}")
         return False
 
 def check_alertmanager_status():
@@ -134,23 +134,23 @@ def check_alertmanager_status():
         response = requests.get("http://localhost:9093/api/v1/status", timeout=5)
         if response.status_code == 200:
             data = response.json()
-            print("\n🚨 AlertManager Status:")
+            print("\nAlertManager Status:")
             print("-" * 23)
-            print("✅ AlertManager is running")
+            print("[PASS] AlertManager is running")
             
             # Check for active alerts
             alerts_response = requests.get("http://localhost:9093/api/v1/alerts", timeout=5)
             if alerts_response.status_code == 200:
                 alerts = alerts_response.json().get('data', [])
                 active_alerts = [a for a in alerts if a.get('status', {}).get('state') == 'active']
-                print(f"📋 Active alerts: {len(active_alerts)}")
+                print(f"Active alerts: {len(active_alerts)}")
             
             return True
         else:
-            print("❌ AlertManager not responding")
+            print("[FAIL] AlertManager not responding")
             return False
     except Exception as e:
-        print(f"❌ Error checking AlertManager: {e}")
+        print(f"[FAIL] Error checking AlertManager: {e}")
         return False
 
 def main():
@@ -172,21 +172,21 @@ def main():
             result = check_func()
             results.append((check_name, result))
         except Exception as e:
-            print(f"❌ Error in {check_name}: {e}")
+            print(f"[FAIL] Error in {check_name}: {e}")
             results.append((check_name, False))
         
         time.sleep(1)  # Brief pause between checks
     
     # Summary
     print("\n" + "=" * 40)
-    print("📋 HEALTH CHECK SUMMARY")
+    print("HEALTH CHECK SUMMARY")
     print("=" * 40)
     
     passed_checks = 0
     total_checks = len(results)
     
     for check_name, result in results:
-        status_icon = "✅" if result else "❌"
+        status_icon = "[PASS]" if result else "[FAIL]"
         status_text = "PASS" if result else "FAIL"
         print(f"{status_icon} {check_name:<25} - {status_text}")
         if result:
@@ -195,10 +195,10 @@ def main():
     print(f"\nOverall Status: {passed_checks}/{total_checks} checks passed")
     
     if passed_checks == total_checks:
-        print("🎉 All systems operational!")
+        print("All systems operational!")
         return 0
     else:
-        print("⚠️  Some issues detected. Check logs and configuration.")
+        print("Some issues detected. Check logs and configuration.")
         return 1
 
 if __name__ == "__main__":
