@@ -2,16 +2,16 @@
 
 <div align="center">
 
-[![Project Status](https://img.shields.io/badge/Status-In%20Development-blue?style=for-the-badge)](https://github.com/yourusername/netpulse)
-[![Version](https://img.shields.io/badge/Version-1.0.0--beta-blue?style=for-the-badge)](https://github.com/yourusername/netpulse/releases)
+[![Project Status](https://img.shields.io/badge/Status-In%20Development-blue?style=for-the-badge)](https://github.com/Code Savanna/netpulse)
+[![Version](https://img.shields.io/badge/Version-1.0.0--beta-blue?style=for-the-badge)](https://github.com/Code Savanna/netpulse/releases)
 [![License](https://img.shields.io/badge/License-MIT-green?style=for-the-badge)](LICENSE)
-[![Build Status](https://img.shields.io/badge/Build-Passing-brightgreen?style=for-the-badge)](https://github.com/yourusername/netpulse/actions)
+[![Build Status](https://img.shields.io/badge/Build-Passing-brightgreen?style=for-the-badge)](https://github.com/Code Savanna/netpulse/actions)
 
 **Real-time Network Operations Center (NOC) Monitoring Dashboard**
 
 *Professional-grade network infrastructure monitoring for telecoms, ISPs, and enterprise environments*
 
-[**Live Demo**](https://netpulse-demo.vercel.app) • [**Documentation**](./docs) • [**Architecture**](./ARCHITECTURE.md) • [**Report Bug**](https://github.com/yourusername/netpulse/issues)
+[**Live Demo**](https://netpulse-demo.vercel.app) • [**Documentation**](./docs) • [**Architecture**](./ARCHITECTURE.md) • [**Report Bug**](https://github.com/Code Savanna/netpulse/issues)
 
 </div>
 
@@ -106,10 +106,11 @@
 | **Layer** | **Technology** | **Purpose** |
 |-----------|----------------|-------------|
 | **Frontend** | ![React](https://img.shields.io/badge/React-18.x-61DAFB?logo=react) ![Tailwind](https://img.shields.io/badge/Tailwind-3.x-06B6D4?logo=tailwindcss) ![TypeScript](https://img.shields.io/badge/TypeScript-5.x-3178C6?logo=typescript) | Modern, responsive user interface |
-| **Backend** | ![FastAPI](https://img.shields.io/badge/FastAPI-0.104-009688?logo=fastapi) ![Python](https://img.shields.io/badge/Python-3.11-3776AB?logo=python) ![SQLAlchemy](https://img.shields.io/badge/SQLAlchemy-2.x-D71F00?logo=sqlalchemy) | High-performance API and ORM |
-| **Database** | ![PostgreSQL](https://img.shields.io/badge/PostgreSQL-15-336791?logo=postgresql) ![Redis](https://img.shields.io/badge/Redis-7.x-DC382D?logo=redis) | Primary database and caching |
+| **API Gateway** | ![FastAPI](https://img.shields.io/badge/FastAPI-0.104-009688?logo=fastapi) ![Python](https://img.shields.io/badge/Python-3.11-3776AB?logo=python) | Request routing & authentication |
+| **Microservices** | ![FastAPI](https://img.shields.io/badge/FastAPI-0.104-009688?logo=fastapi) ![SQLAlchemy](https://img.shields.io/badge/SQLAlchemy-2.x-D71F00?logo=sqlalchemy) | Independent, scalable services |
+| **Database** | ![PostgreSQL](https://img.shields.io/badge/PostgreSQL-15-336791?logo=postgresql) ![TimescaleDB](https://img.shields.io/badge/TimescaleDB-2.x-FDB515?logo=timescale) ![Redis](https://img.shields.io/badge/Redis-7.x-DC382D?logo=redis) | Time-series data & caching |
+| **Message Queue** | ![RabbitMQ](https://img.shields.io/badge/RabbitMQ-3.x-FF6600?logo=rabbitmq) ![Celery](https://img.shields.io/badge/Celery-5.x-37B24D?logo=celery) | Async task processing |
 | **Real-time** | ![WebSocket](https://img.shields.io/badge/WebSocket-Native-010101?logo=websocket) | Live data streaming |
-| **Task Queue** | ![Celery](https://img.shields.io/badge/Celery-5.x-37B24D?logo=celery) | Background job processing |
 | **Monitoring** | ![Prometheus](https://img.shields.io/badge/Prometheus-2.x-E6522C?logo=prometheus) ![Grafana](https://img.shields.io/badge/Grafana-10.x-F46800?logo=grafana) | System observability |
 | **DevOps** | ![Docker](https://img.shields.io/badge/Docker-24.x-2496ED?logo=docker) ![GitHub Actions](https://img.shields.io/badge/GitHub%20Actions-2088FF?logo=githubactions) | Containerization and CI/CD |
 | **Cloud** | ![Render](https://img.shields.io/badge/Render-Backend-46E3B7?logo=render) ![Vercel](https://img.shields.io/badge/Vercel-Frontend-000000?logo=vercel) | Production deployment |
@@ -120,34 +121,62 @@
 
 ## Project Architecture
 
+**NetPulse now follows a modern microservices architecture** with independent, scalable services:
+
 ```
 netpulse/
-├──  netpulse_backend/          # FastAPI backend services
-│   ├──  app/
-│   │   ├──  api/               # REST API endpoints
-│   │   ├──  core/              # Configuration and security
-│   │   ├──  models/            # Database models
-│   │   ├──  services/          # Business logic
-│   │   └──  utils/             # Helper functions
-│   ├──  tests/                 # Backend test suite
-│   ├──  alembic/               # Database migrations
-│   ├── requirements.txt
-│   └── Dockerfile
-├──  netpulse_frontend/         # React.js dashboard
-│   ├──  src/
-│   │   ├──  components/        # Reusable UI components
-│   │   ├──  pages/             # Application pages
-│   │   ├──  hooks/             # Custom React hooks
-│   │   ├──  services/          # API integration
-│   │   └──  utils/             # Frontend utilities
-│   ├──  public/                # Static assets
+├── services/                   # Microservices architecture
+│   ├── gateway/               # API Gateway & routing
+│   │   ├── main.py           # Central request router
+│   │   ├── requirements.txt
+│   │   └── Dockerfile
+│   ├── auth-service/         # Authentication & authorization
+│   │   ├── auth_service.py   # JWT auth logic
+│   │   ├── models.py         # User & organization models
+│   │   ├── main.py           # Auth endpoints
+│   │   └── Dockerfile
+│   ├── device-service/       # Device management
+│   │   ├── device_service.py # Device CRUD operations
+│   │   ├── models.py         # Device data models
+│   │   ├── main.py           # Device endpoints
+│   │   └── Dockerfile
+│   ├── monitoring-service/   # Real-time monitoring
+│   │   ├── monitoring_service.py # Health checks & metrics
+│   │   ├── tasks.py          # Celery background tasks
+│   │   ├── main.py           # WebSocket & monitoring API
+│   │   └── Dockerfile
+│   ├── alert-service/        # Alert management
+│   │   ├── alert_service.py  # Alert processing logic
+│   │   ├── models.py         # Alert data models
+│   │   ├── main.py           # Alert endpoints
+│   │   └── Dockerfile
+│   ├── notification-service/ # Multi-channel notifications
+│   │   ├── notification_service.py # SMS, email, webhooks
+│   │   ├── main.py           # Notification endpoints
+│   │   └── Dockerfile
+│   └── reporting-service/    # Analytics & insights
+│       ├── reporting_service.py # Report generation
+│       ├── main.py           # Reporting endpoints
+│       └── Dockerfile
+├── netpulse_frontend/        # React.js dashboard
+│   ├── src/
+│   │   ├── components/       # Reusable UI components
+│   │   ├── pages/            # Application pages
+│   │   ├── hooks/            # Custom React hooks
+│   │   ├── services/         # API integration
+│   │   └── utils/            # Frontend utilities
+│   ├── public/               # Static assets
 │   ├── package.json
 │   └── Dockerfile
-├──  docs/                      # Documentation
-├──  scripts/                   # Deployment scripts
-├──  docker-compose.yml         # Multi-service orchestration
-├──  docker-compose.prod.yml    # Production configuration
-├──  ARCHITECTURE.md            # Detailed architecture guide
+├── monitoring/               # Observability stack
+│   ├── prometheus.yml        # Metrics collection
+│   ├── alert_rules.yml       # Alert rules
+│   └── grafana/             # Dashboards & visualization
+├── docs/                     # Documentation
+├── scripts/                  # Deployment scripts
+├── docker-compose.yml        # Multi-service orchestration
+├── docker-compose.prod.yml   # Production configuration
+├── ARCHITECTURE.md           # Detailed architecture guide
 ├──  CONTRIBUTING.md            # Contribution guidelines
 └──  README.md                  # This file
 ```
@@ -165,8 +194,13 @@ netpulse/
 git clone <repository-url>
 cd netpulse
 
-# Start the development environment
+# Start the microservices development environment
 docker-compose up --build
+
+# The following services will be available:
+# - API Gateway: http://localhost:8000
+# - Frontend: http://localhost:3000
+# - Individual services on ports 8001-8006
 ```
 
 ### 2. Production Setup with Monitoring
@@ -183,10 +217,16 @@ docker-compose -f docker-compose.prod.yml up --build -d
 
 | Service | URL | Credentials |
 |---------|-----|-------------|
-| **NetPulse App** | http://localhost:3000 | - |
+| **NetPulse Dashboard** | http://localhost:3000 | - |
+| **API Gateway** | http://localhost:8000 | - |
+| **Auth Service** | http://localhost:8001 | - |
+| **Device Service** | http://localhost:8002 | - |
+| **Monitoring Service** | http://localhost:8003 | - |
+| **Alert Service** | http://localhost:8004 | - |
+| **Notification Service** | http://localhost:8005 | - |
+| **Reporting Service** | http://localhost:8006 | - |
 | **Grafana** | http://localhost:3001 | admin/admin |
 | **Prometheus** | http://localhost:9090 | - |
-| **AlertManager** | http://localhost:9093 | - |
 
 ---
 
@@ -194,34 +234,43 @@ docker-compose -f docker-compose.prod.yml up --build -d
 
 ### **Environment Setup**
 
-Create a `.env` file in the backend directory:
+Each microservice requires its own environment configuration. Create `.env` files for each service:
 
 <details>
-<summary><strong>Complete Environment Configuration</strong></summary>
+<summary><strong>Auth Service Configuration</strong></summary>
 
 ```env
-# Database Configuration
-DATABASE_URL=postgresql://netpulse:password@localhost:5432/netpulse
-REDIS_URL=redis://localhost:6379/0
-
-# API Keys
-AFRICAS_TALKING_API_KEY=your_africas_talking_api_key
-AFRICAS_TALKING_USERNAME=your_username
-SENDGRID_API_KEY=your_sendgrid_api_key
-SENDGRID_FROM_EMAIL=noreply@yourcompany.com
-
-# Security
+# services/auth-service/.env
+DATABASE_URL=postgresql://netpulse:password@db:5432/netpulse
 SECRET_KEY=your-super-secret-key-here
 ALGORITHM=HS256
 ACCESS_TOKEN_EXPIRE_MINUTES=30
+```
+</details>
 
-# Monitoring & Features
-PROMETHEUS_ENABLED=true
-GRAFANA_ENABLED=true
-LOG_LEVEL=INFO
-ENABLE_SMS_ALERTS=true
-ENABLE_EMAIL_ALERTS=true
-ENABLE_WEBHOOK_ALERTS=true
+<details>
+<summary><strong>Notification Service Configuration</strong></summary>
+
+```env
+# services/notification-service/.env
+DATABASE_URL=postgresql://netpulse:password@db:5432/netpulse
+SENDGRID_API_KEY=your_sendgrid_api_key
+SENDGRID_FROM_EMAIL=noreply@yourcompany.com
+AFRICAS_TALKING_API_KEY=your_africas_talking_api_key
+AFRICAS_TALKING_USERNAME=your_username
+```
+</details>
+
+<details>
+<summary><strong>Monitoring Service Configuration</strong></summary>
+
+```env
+# services/monitoring-service/.env
+DATABASE_URL=postgresql://netpulse:password@db:5432/netpulse
+CELERY_BROKER_URL=amqp://netpulse:password@rabbitmq:5672//
+CELERY_RESULT_BACKEND=redis://redis:6379/1
+DEVICE_SERVICE_URL=http://device-service:8002
+AUTH_SERVICE_URL=http://auth-service:8001
 ```
 </details>
 
@@ -256,11 +305,16 @@ ENABLE_WEBHOOK_ALERTS=true
 ### **Run Test Suite**
 
 ```bash
-# Backend testing
-cd netpulse_backend && python -m pytest tests/ -v --cov=app
+# Test individual microservices
+cd services/auth-service && python -m pytest tests/ -v
+cd services/device-service && python -m pytest tests/ -v
+cd services/monitoring-service && python -m pytest tests/ -v
 
 # Frontend testing  
 cd netpulse_frontend && npm test
+
+# Integration testing (all services)
+docker-compose -f docker-compose.test.yml up --build --abort-on-container-exit
 
 # End-to-end testing
 npm run test:e2e
@@ -272,7 +326,8 @@ npm run test:e2e
 
 | **Component** | **Coverage** | **Status** |
 |--------------|-------------|-----------|
-| **Backend** | >90% | Excellent |
+| **Microservices** | >85% | Good |
+| **API Gateway** | >90% | Excellent |
 | **Frontend** | >85% | Good |
 | **Integration** | Critical paths | Covered |
 | **Performance** | 10k concurrent users | Load tested |
@@ -286,12 +341,17 @@ npm run test:e2e
 ### **Production Deployment**
 
 ```bash
-# Build & deploy production stack
+# Build & deploy production microservices stack
 docker-compose -f docker-compose.prod.yml build
 docker-compose -f docker-compose.prod.yml up -d
 
-# Run database migrations
-docker-compose exec backend alembic upgrade head
+# Initialize database for each service
+docker-compose exec auth-service python -c "from database import engine; from models import Base; Base.metadata.create_all(bind=engine)"
+docker-compose exec device-service python -c "from database import engine; from models import Base; Base.metadata.create_all(bind=engine)"
+docker-compose exec alert-service python -c "from database import engine; from models import Base; Base.metadata.create_all(bind=engine)"
+
+# Start Celery workers for background tasks
+docker-compose exec monitoring-service celery -A celery_app worker --loglevel=info --detach
 ```
 
 ### **Cloud Platforms**
@@ -300,10 +360,11 @@ docker-compose exec backend alembic upgrade head
 
 | **Platform** | **Status** | **Use Case** |
 |-------------|-----------|-------------|
-| **Render** | Active | Backend API hosting |
+| **Render** | Active | Microservices hosting |
 | **Vercel** | Active | Frontend deployment |
 | **AWS ECS** | In Progress | Container orchestration |
 | **Kubernetes** | Planned | Enterprise scaling |
+| **Docker Swarm** | Supported | Multi-node deployment |
 
 </div>
 
@@ -345,7 +406,7 @@ If NetPulse helps your projects:
 
 ---
 
-**Built with ❤️ for the Network Operations Community**
+**Built with care for the Network Operations Community**
 
 *NetPulse - Empowering Network Engineers Worldwide*
 
